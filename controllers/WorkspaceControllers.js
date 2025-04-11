@@ -45,7 +45,7 @@ class WorkspaceControllers {
             if (!deleted) {
                 return res.status(404).json({ error: "Workspace not found" });
             }
-            res.status(200).json({ message: "Workspace deleted successfully" });
+            res.status(200).json({ success: true, message: "Workspace deleted successfully" });
         } catch (error) {
             res.status(500).json({ error: "Failed to delete workspace" });
         }
