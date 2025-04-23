@@ -5,11 +5,15 @@ class UserControllers {
         const { email, password } = req.body;
         try {
             const user = await sequelize.models.User.findOne({ where: { email } });
-            if (!user || user.password !== password) {
-                res.status(401).json({ error: "Invalid credentials." });
-            } else {
-                res.status(200).json({ message: "Authentication successful.", user });
+            if (!user) {
+                return res.json({ success: false, error: "Credenciais inválidas." });
             }
+            
+            if (user.password !== password) {
+                return res.json({ success: false, error: "Credenciais inválidas." });
+            }
+            
+            res.status(200).json({ success: true, message: "Autenticação bem-sucedida.", user });            
         } catch (error) {
             res.status(500).json({ error: "Authentication failed." });
         }
@@ -29,13 +33,12 @@ class UserControllers {
     }
 
     static async addUser(req, res) {
-        const { firstName, lastName, email, company, password } = req.body;
+        const { firstName, lastName, email, password } = req.body;
         try {
             const user = await sequelize.models.User.create({
                 firstName,
                 lastName,
                 email,
-                company,
                 password,
             });
             res.status(201).json({ message: "User created successfully.", user });

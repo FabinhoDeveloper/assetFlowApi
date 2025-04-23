@@ -5,7 +5,6 @@ const User = sequelize.define('User', {
   firstName: DataTypes.STRING,
   lastName: DataTypes.STRING,
   email: DataTypes.STRING,
-  companyName: DataTypes.STRING,
   password: DataTypes.STRING
 }, {
     timestamps: false
