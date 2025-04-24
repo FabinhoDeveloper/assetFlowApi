@@ -11,6 +11,22 @@ class WorkspaceControllers {
         }
     }
 
+    static async getWorkspaceById(req, res) {
+        const {id} = req.params
+
+        try {
+            const workspace = await Workspace.findByPk(id); // <- Correção aqui
+
+            if (!workspace) {
+                return res.json({success: false, mensagem: "Workspace não encontrado!"})
+            }
+
+            return res.json({success: true, workspace})
+        } catch (error) {
+            res.status(500).json({ error: "Failed to fetch workspace" });
+        }
+    }
+
     static async addWorkspace(req, res) {
         try {
             const { workspaceName, description, color, userId } = req.body;

@@ -49,23 +49,21 @@ class UserControllers {
 
     static async editUser(req, res) {
         const { id } = req.params;
-        const { firstName, lastName, email, company, password } = req.body;
+        const { firstName, lastName, email} = req.body;
 
         try {
             const user = await sequelize.models.User.findByPk(id);
             if (!user) {
-                return res.status(404).json({ error: "User not found." });
+                return res.json({ error: "User not found." });
             }
 
             user.firstName = firstName || user.firstName;
             user.lastName = lastName || user.lastName;
             user.email = email || user.email;
-            user.company = company || user.company;
-            user.password = password || user.password;
 
             await user.save();
 
-            res.status(200).json({ message: "User updated successfully.", user });
+            res.status(200).json({ success: true, message: "Usuário Atualizado com Sucesso.", user });
         } catch (error) {
             res.status(500).json({ error: "Failed to update user." });
         }
