@@ -1,3 +1,4 @@
+// Modelo de usúario do banco de dados
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 

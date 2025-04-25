@@ -1,3 +1,4 @@
+// Modelo de item do banco de dados
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 

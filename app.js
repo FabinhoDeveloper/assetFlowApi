@@ -1,9 +1,9 @@
+// Arquivo de configuração do servidor Express
+// e configuração do banco de dados Sequelize
 const express = require("express")
-
 const userRoutes = require("./routes/UserRoutes.js")
 const itemRoutes = require("./routes/ItemRoutes.js")
 const workspaceRoutes = require("./routes/WorkspaceRoutes.js")
-
 const sequelize = require('./config/database.js');
 const setupAssociations = require('./model/index.js')
 setupAssociations()

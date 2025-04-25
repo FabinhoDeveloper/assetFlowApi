@@ -1,3 +1,4 @@
+// Configuração do workspace, item e user
 const Item = require('./Item.js')
 const User = require('./User.js')
 const Workspace = require('./Workspace.js')
