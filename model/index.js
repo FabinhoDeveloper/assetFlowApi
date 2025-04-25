@@ -16,6 +16,7 @@ function setupAssociations() {
       Workspace.hasMany(Item, {
         foreignKey: 'workspaceId',
         as: 'items',
+        onDelete: 'CASCADE'
       });
     
       Item.belongsTo(Workspace, {

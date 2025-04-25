@@ -25,7 +25,7 @@ class ItemController {
                 purchaseDate,
                 workspaceId,
             });
-            res.status(201).json(newItem);
+            res.status(201).json({success: true, newItem});
         } catch (error) {
             res.status(500).json({ error: "Failed to add item." });
         }
@@ -34,15 +34,18 @@ class ItemController {
     static async editItem(req, res) {
         const { id } = req.params;
         const { itemName, category, serialNumber, value, assignedTo, location, description, purchaseDate } = req.body;
+        
+        console.log(purchaseDate)
+
         try {
             const updatedItem = await sequelize.models.Item.update(
                 { itemName, category, serialNumber, value, assignedTo, location, description, purchaseDate },
                 { where: { id } }
             );
             if (updatedItem[0] === 0) {
-                res.status(404).json({ error: "Item not found." });
+                res.json({ error: "Item not found." });
             } else {
-                res.status(200).json({ message: "Item updated successfully." });
+                res.status(200).json({ success: true, message: "Item updated successfully." });
             }
         } catch (error) {
             res.status(500).json({ error: "Failed to update item." });
@@ -54,9 +57,9 @@ class ItemController {
         try {
             const deletedItem = await sequelize.models.Item.destroy({ where: { id } });
             if (deletedItem === 0) {
-                res.status(404).json({ error: "Item not found." });
+                res.json({ error: "Item não encontrado." });
             } else {
-                res.status(200).json({ message: "Item deleted successfully." });
+                res.status(200).json({ success: true, message: "Item deletado com sucesso." });
             }
         } catch (error) {
             res.status(500).json({ error: "Failed to delete item." });

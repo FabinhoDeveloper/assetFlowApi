@@ -9,7 +9,7 @@ const Item = sequelize.define('Item', {
     assignedTo: DataTypes.STRING,
     location: DataTypes.STRING,
     description: DataTypes.STRING,
-    purchaseDate: DataTypes.DATE,
+    purchaseDate: DataTypes.DATEONLY,
 }, {
     timestamps: false
 });

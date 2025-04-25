@@ -15,7 +15,7 @@ app.use("/user", userRoutes)
 app.use("/item", itemRoutes)
 app.use("/workspace", workspaceRoutes)
 
-sequelize.sync({ force: false }) // force: true recria as tabelas
+sequelize.sync() // force: true recria as tabelas
   .then(() => {
     app.listen(5000, () => {
         console.log("API Rodando na porta 5000!")
